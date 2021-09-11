@@ -1,28 +1,25 @@
 import React, {useState} from "react";
 import Joke from "./joke_api";
+import Text from "./text"
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [saying, setSaying] = useState('click')
+  const [showCount, setShowCount] = useState(false)
+  const [showButton, setShowButton] = useState('show counter')
 
-  function down(){
-    setCount(prevCount => prevCount - 1)
-    setSaying(prevSaying => prevSaying = "lawd")
-  }
-
-  function up(){
-    setCount(prevCount => prevCount + 1)
-    setSaying(prevSaying => prevSaying = "we UP!")
+  const show = () => {
+    setShowCount(!showCount)
+    setShowButton(!showButton)
   }
 
   return (
     <div className="App">
-      <button onClick={up}>+</button>
-      <span>{count} {saying}</span>
-      <button onClick={down}>-</button>
+      {showCount ? <Text /> : null}
+      <button onClick={show}>{showButton ? 'show counter' : 'hide' }</button>
       <Joke />
     </div>
   );
 }
+
+
 
 export default App;
